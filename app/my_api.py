@@ -12,7 +12,7 @@ from flask import Flask, request
 import flasgger
 from flasgger import Swagger
 
-threshold=0.2
+threshold=0.08
 app=Flask(__name__)
 Swagger(app)
 

@@ -8,7 +8,7 @@ Capstone project for the Springboard Machine Learning Engineering Career Track
 
 ## Data
 
-SDNET2018 is an annotated dataset of concrete images with and without cracks from bridge decks, walls and pavements (https://www.kaggle.com/aniruddhsharma/structural-defects-network-concrete-crack-images). The pavements subset, that include 2600 positive images (with crack) and 21700 negative images (without crack),      has been used to train and test this model. First, the data have been divided into train (80%), validation (10%) and test (10%), then, only for the train subset, new images with cracks have been created and saved. An example of data augmentation is reported in notebooks/DataAugmentation.ipynb  
+SDNET2018 is an annotated dataset of concrete images with and without cracks from bridge decks, walls and pavements (https://www.kaggle.com/aniruddhsharma/structural-defects-network-concrete-crack-images). The pavements subset, that includes 2600 positive images (with crack) and 21700 negative images (without crack), has been used to train and test this model. First, the data have been divided into train (80%), validation (10%) and test (10%), then, only for the train subset, new images with cracks have been created and saved to balanced the two classes. An example of data augmentation is reported in notebooks/DataAugmentation.ipynb  
 
 ## Model
 
@@ -19,26 +19,32 @@ The stack of convolutional layers is followed by two fully connected layers, wit
 
 L2 and dropout regularization have been used in the first fully connected layer to limit the overfitting. Dropout has been used only after the last batch normalization layer to avoid variance shift (https://arxiv.org/pdf/1801.05134.pdf). Experimentation showed that adding L2 regularization to the convolutional layers does not improve the performances.
 
-#### Training
+#### Model training
 
-The network has been trained with a GPU P5000 for 10 epochs, using Adam optimizer and batches of 128 images. The learning rate has been decreased exponentially, from an initial value of 1e-3, with a decay step of 35 and decay rate of 0.92.
- 
-The training of the model is saved in notebook/Model.
+The network has been trained with a GPU P5000, using Adam optimizer and binary crossentropy loss function. The learning rate has been decreased exponentially, from an initial value of 1e-3, with a decay step of 35 and decay rate of 0.92.
+
+After 10 epochs (batches of 128 images), the train loss drops to 0.105 and the validation loss to 0.199, which correspond to a ROC AUC of 0.992 and 0.918 respectively.  
+
+The training of the model is saved in notebook/ModelTraining.
+
+#### Model Testing
+
+The model has been tested on the dedicated test set, that showed a loss of 0.183, similar to the validation set. To convert the probability to class labels, an optimal threshoild has been extracted from the validation set using the formula: optimal_threshold = argmin(TruePositiveRate - (1-FalsePositiveRate)) and used on both validaton and test set. The optimal threshold of 0.08   
+The testing of the model is reported in the notebook/ModelTesting notebook.
 
 ## Repository description
 
-notebooks/ contains an example of data augmentation (DataAugmentation), the training of the model (Model), some hyperparameters tuning (HyperparametersDependences) and the testing of the trained model (FinalModelTesting)
+notebooks/ contains an example of data augmentation (DataAugmentation), the training of the model (ModelTraining), some hyperparameters tuning (HyperparametersDependences) and the testing of the trained model (ModelTesting)
 
-App/ contains all the files to run the application: the trained model with the weights, the Flask application, the Dockerfile and the requirements
+app/ contains all the files to run the application: the trained model with the weights, the Flask application, the Dockerfile and the requirements
 
-### Docker container
 
-To test the app, first build the docker image:
+test_images/ contains few images from the test subset that can be used to test the app
 
-docker build -t crack_api .
+## Test the app
 
-then create the image and start it:
+1) build the docker image: docker build -t crack_api .
 
-docker run -p 5000:5000 crack_api
+2) create the image and start it: docker run -p 5000:5000 crack_api
 
-finally go to http://0.0.0.0:5000/
+3) go to http://0.0.0.0:5000/ and test the app 
