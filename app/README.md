@@ -1,9 +1,7 @@
-## To test the app, first create the docker image: 
+## Test the app
 
-docker build -t crack_api .
+1) build the docker image: docker build -t crack_api .
 
-## Create the image and start it:
+2) create the image and start it: docker run -p 5000:5000 crack_api
 
-docker run -p 5000:5000 crack_api
-
-## Go to http://0.0.0.0:5000/  
+3) go to http://0.0.0.0:5000/ and test the app 
