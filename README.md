@@ -31,7 +31,7 @@ The training of the model is saved in notebook/ModelTraining.
 
 The model has been tested on the dedicated test set, that showed a loss of 0.183, similar to the validation set. To convert the probability to class labels, an optimal threshold has been extracted from the validation set through the  expression: optimal_threshold = argmin(TruePositiveRate - (1-FalsePositiveRate)) and used on both validation and test set. The optimal threshold results in the following metrics:
 
-|Dataset | ROC_AUC | Precision | Recall | f1_score | f2_score |
+| | ROC_AUC | Precision | Recall | f1_score | f2_score |
 |---|---|---|---|---|---|
 | Validation | 0.918 | 0.390 | 0.842 | 0.533 | 0.684|
 |Test | 0.921 | 0.366 | 0.824 | 0.507 | 0.659 |
