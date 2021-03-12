@@ -2,9 +2,9 @@
 
 Capstone project for the Springboard Machine Learning Engineering Career Track
 
-## Problem definition
+## Introduction
 
-
+Computer vision is used for surface defects inspection in multiple fields, like manufacturing and civil engineering. In this project, the problem of detecting cracks in a concrete surface has been tackled using a deep learning model.
 
 ## Data
 
@@ -40,9 +40,9 @@ The testing of the model is reported in the notebook/ModelTesting notebook. The 
 
 ## Repository description
 
-notebooks/ contains an example of data augmentation (DataAugmentation), the training of the model (ModelTraining), some hyperparameters tuning (HyperparametersDependences) and the testing of the trained model (ModelTesting)
+notebooks/ contains an example of data augmentation (DataAugmentation), the training of the model (ModelTraining), the hyperparameters tuning and the relative impact on the loss function (HyperparametersDependences) and the testing of the trained model (ModelTesting)
 
-app/ contains all the files to run the application: the trained model with the weights, the Flask application, the Dockerfile and the requirements
+app/ contains all the files to run the application: the trained model with the weights, the Flask application, the Dockerfile and the requirements file
 
 test_images/ contains few images from the test subset that can be used to test the app
 
