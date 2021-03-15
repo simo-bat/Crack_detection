@@ -38,11 +38,11 @@ The model has been tested on the dedicated test set, that showed a loss of 0.183
 | Validation | 0.918 | 0.390 | 0.842 | 0.533 | 0.684|
 |Test | 0.921 | 0.366 | 0.824 | 0.507 | 0.659 |
 
-####### Examples of correct classification
+#### Examples of correct classification
 
-! [True Positive Examples](https://github.com/simo-bat/Crack_detection/tree/master/TruePositive.png)
+![True Positive Examples](https://github.com/simo-bat/Crack_detection/tree/master/TruePositive.png)
 
-###### Example of missclassification 
+##### Example of missclassification 
 
 
 
