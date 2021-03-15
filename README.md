@@ -40,13 +40,23 @@ The model has been tested on the dedicated test set, that showed a loss of 0.183
 
 #### Examples of correct classification
 
+Here few examples of corrected classifiaction on test data for both positive and negative examples. The title of each image indicate the actual class and the probability that the image contains a crack. Note that the optimal threshold evaluated on validation data is equal to 0.08 (i.e. p<0.078 --> Non-cracked, p>0.08 --> Cracked)
+
 ![True Positive Examples](https://github.com/simo-bat/Crack_detection/tree/master/TruePositive.png?raw=true)
 
 ##### Example of missclassification 
 
+Here few examples of missclassified images for both positive and negative examples. 
 
+False Positive
+![False Positive Examples](https://github.com/simo-bat/Crack_detection/tree/master/FalsePositive.png?raw=true)
 
-The testing of the model is reported in the notebook/ModelTesting notebook. The notebook include more examples of misclassified images.
+False Negative
+![False Negative Examples](FalseNegative.png?raw=true)
+
+False positive examples show common features like stripes and granules. False negative examples show common features like very small and shallow cracks and pothholes that looks like granules/stains.
+
+In general, many images were manually analized and im multiple cases it was very hard to classify them also for a person.  
 
 ## Repository description
 
