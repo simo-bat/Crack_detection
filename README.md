@@ -40,7 +40,7 @@ The model has been tested on the dedicated test set, that showed a loss of 0.183
 
 ####### Examples of correct classification
 
-! [True_Positive](TruePositive.png?raw=true)
+! [True Positive Examples](https://github.com/simo-bat/Crack_detection/tree/master/TruePositive.png?raw=true)
 
 ###### Example of missclassification 
 
