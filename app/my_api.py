@@ -29,7 +29,7 @@ def prepare_image(image, target):
 
 @app.route('/')
 def welcome():
-    return "Welcome All - go to http://127.0.0.1:5000/apidocs"
+    return "Welcome, to http://0.0.0.0:5000/apidocs"
 
 @app.route('/predict_file',methods=["POST"])
 def predict_note_file():

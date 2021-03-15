@@ -27,6 +27,8 @@ After 10 epochs (batches of 128 images), the train loss is stable around 0.105 a
 
 The training of the model is saved in notebook/ModelTraining.
 
+#### Hyperparameter Tuning
+
 #### Model Testing
 
 The model has been tested on the dedicated test set, that showed a loss of 0.183, similar to the validation set. To convert the probability to class labels, an optimal threshold has been extracted from the validation set through the  expression: optimal_threshold = argmin(TruePositiveRate - (1-FalsePositiveRate)) and used on both validation and test set. The optimal threshold results in the following metrics:
@@ -36,7 +38,15 @@ The model has been tested on the dedicated test set, that showed a loss of 0.183
 | Validation | 0.918 | 0.390 | 0.842 | 0.533 | 0.684|
 |Test | 0.921 | 0.366 | 0.824 | 0.507 | 0.659 |
 
-The testing of the model is reported in the notebook/ModelTesting notebook. The notebook include also few examples of misclassified images.
+####### Examples of correct classification
+
+! [True_Positive](TruePositive.png)
+
+###### Example of missclassification 
+
+
+
+The testing of the model is reported in the notebook/ModelTesting notebook. The notebook include more examples of misclassified images.
 
 ## Repository description
 
