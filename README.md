@@ -29,21 +29,9 @@ The stack of convolutional layers is followed by two fully connected layers, wit
 
 L2 and dropout regularization have been used in the first fully connected layer to limit the overfitting. Dropout has been used only after the last batch normalization layer to avoid variance shift [3-4]. Experimentation showed that adding L2 regularization to the convolutional layers does not improve the performances.
 
-#### Model training
-
-The network has been trained with a GPU P5000, using Adam optimizer and binary crossentropy loss function. The learning rate has been decreased exponentially, from an initial value of 1e-3, with a decay step of 35 and decay rate of 0.92.
-
-After 10 epochs (batches of 128 images), the train loss is stable around 0.105 and the validation loss is around 0.199, which correspond to a ROC AUC of 0.992 and 0.918 respectively.  
-
-The training of the model is saved in notebook/ModelTraining.
-
 #### Hyperparameters Tuning
 
- 
-
 Hyperparameters tuning is critical to optimize the performance of a neural network and is very time consuming, since there are infinite combinations of hyperparameters that can be tested. In this section, the impact of few hyperparameters is summarized, namely learning rate, padding and regularization.
-
- 
 
 ##### Learning rate
 
@@ -63,7 +51,23 @@ Significant improvement of the loss function on both training and validation dat
 
 ![Regularization](Regularization.png?raw=true)
 
-The loss function on validation data was further decreased using regularization. The figure above shows the impact of two different techniques, namely L2 and Dropout regularization. Note that the regularization was applied only to the fully connected layer after the stack of convolutional layers: experimental results shown that  were carried out   
+flippa L2 and DP in legend
+dotted line for no reg
+standardize numbers
+
+Regularization was used to reduce the overfitting, i.e. decrease the loss on validation. The figure above shows the impact of two different techniques, namely L2 and Dropout regularization. The regularization was applied only to the fully connected layer after the stack of convolutional layers: experimental results showed that regularization on convolutional layers does not improved the loss. 
+ 
+Without regularization, blue dotted line in the figure above, the loss after 10 epochs tends to zero, while the val-loss continues to oscillate. Dropout regularization stabilizes the val-loss, a rate of 15% shows the lowest val-loss. L2 regularization has a marginal effect,  
+
+#### Model training
+
+The network has been trained with a GPU P5000, using Adam optimizer and binary crossentropy loss function. The learning rate has been decreased exponentially, from an initial value of 1e-3, with a decay step of 35 and decay rate of 0.92.
+
+After 10 epochs (batches of 128 images), the train loss is stable around 0.105 and the validation loss is around 0.199, which correspond to a ROC AUC of 0.992 and 0.918 respectively.  
+
+The training of the model is saved in notebook/ModelTraining.
+
+
 
 #### Model Testing
 
