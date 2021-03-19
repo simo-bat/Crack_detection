@@ -20,7 +20,7 @@ More information and examples about the data augmentation are reported in notebo
 
 ## Model
 
-# add architecture
+![Architecture](Architecture.png?raw=true)
 
 #### Convolutional Neural Network architecture
 
@@ -39,7 +39,7 @@ Hyperparameters tuning is critical to optimize the performance of a neural netwo
 
 Learning rate is the first hyperparameter optimized. In general, constant values do not perform very well, as shown in the figure above (dotted lines). The loss function of the validation data fluctuates significantly with the default value of 1e-3 and for larger learning rates (i.e. 1e-2). Smaller learning rate (i.e. 1e-4) works better, the loss function on train data decreases to below 0.1 and the loss function is around 0.4 for few epochs, then it increases a little bit (overfit).
 
-Better results can be achieved gradually decreasing the learning rate during the training. In this case, an exponential decay has been used: learning_rate=lr0 * decay_rate ^ (step/decay), with decay_rate=0.92. Similar results were obtained using lr0 = 1e-2 and 1e-3, decay = 35, with loss function on validation data stable around 0.24. A more aggressive decay (decay=100) leads to a little bit more overfitting, i.e. smaller loss on training data and bigger loss on validation data.
+Better results can be achieved gradually decreasing the learning rate during the training. In this case, an exponential decay has been used: *learning_rate=lr0 * decay_rate ^ (step/decay)*, with decay_rate=0.92. Similar results were obtained using lr0 = 1e-2 and 1e-3, decay = 35, with loss function on validation data stable around 0.24. A more aggressive decay (decay=100) leads to a little bit more overfitting, i.e. smaller loss on training data and bigger loss on validation data.
 
 ##### Padding
 
@@ -71,7 +71,7 @@ The training of the model is saved in notebook/ModelTraining.
 
 #### Model Testing
 
-The model has been tested on the dedicated test set, that showed a loss of 0.183, similar to the validation set. To convert the probability to class labels, an optimal threshold has been extracted from the validation set through the  expression: optimal_threshold = argmin(TruePositiveRate - (1-FalsePositiveRate)) and used on both validation and test set. The optimal threshold results in the following metrics:
+The model has been tested on the dedicated test set, that showed a loss of 0.183, similar to the validation set. To convert the probability to class labels, an optimal threshold has been extracted from the validation set through the  expression: *optimal_threshold = argmin(TruePositiveRate - (1-FalsePositiveRate))* and used on both validation and test set. The optimal threshold results in the following metrics:
 
 | | ROC_AUC | Precision | Recall | f1_score | f2_score |
 |---|---|---|---|---|---|
