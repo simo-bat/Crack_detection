@@ -33,9 +33,9 @@ Hyperparameters tuning is critical to optimize the performance of a neural netwo
 
 ![LearningRate](README_images/LearningRate.png?raw=true)
 
-Learning rate is the first hyperparameter that has been optimized. In general, constant values do not perform very well, as shown in the figure above (dotted lines). The loss of the validation data fluctuates significantly with the default value of 1e-3 and for larger learning rates (e.g. 1e-2). Smaller learning rate (e.g. 1e-4) works better, the loss function on train data decreases to below 0.1 and the loss function is around 0.4 for few epochs, then it increases a little bit (overfit).
+Learning rate is the first hyperparameter that has been optimized. In general, constant values do not perform very well, as shown in the figure above (dotted lines). The loss of the validation data fluctuates significantly with the default value of 1e-3 and for larger learning rates (e.g. 1e-2). A smaller learning rate (e.g. 1e-4) works better but tends to overfit: the loss on train data decreases below 0.1 and the loss on validation data is around 0.4 for few epochs, then it increases a little bit.
 
-Better results can be achieved gradually decreasing the learning rate during the training. In this case, an exponential decay has been used: *learning_rate=lr0 * decay_rate ^ (step/decay)*, with decay_rate=0.92. Similar results were obtained using lr0 = 1e-2 and 1e-3, decay = 35, with loss function on validation data stable around 0.24. A more aggressive decay (decay=100) leads to more overfitting, i.e. smaller loss on training data and bigger loss on validation data.
+Better results can be achieved gradually decreasing the learning rate during the training. In this case, an exponential decay has been used: *learning_rate=lr0 * decay_rate ^ (step/decay)*, with decay_rate = 0.92. Similar results were obtained using lr0 = 1e-2 and 1e-3, decay = 35, with loss on validation data stable around 0.24. A more aggressive decay (decay=100) leads to more overfitting, smaller loss on training data and bigger loss on validation data.
 
 ##### Padding
 
@@ -47,19 +47,15 @@ An improvement of the loss on both training and validation data was achieved usi
 
 ![regularization_](README_images/Regularization.png?raw=true)
 
-flippa L2 and DP in legend
-dotted line for no reg
-standardize numbers
-
 Regularization was used to reduce the overfitting. The figure above shows the impact of L2 and Dropout regularization. The regularization was applied only to the first fully connected layer after the stack of convolutional layers: experimental results showed that regularization on convolutional layers does not improve the loss. 
  
-Without regularization, blue dotted line in the figure above, the loss after 10 epochs tends to zero, while the val-loss continues to oscillate. Dropout regularization stabilizes the val-loss and a rate of 15% shows the lowest val-loss. L2 regularization does not really improve the loss, it is negligible for very small regularization factors (e.g. 1e-4) or increase the loss for larger factors (e.g. 1e-3).  
+Without regularization, blue dotted line in the figure above, the loss on training data tends to zero after 10 epochs, while the loss pn validation data continues to oscillate. Dropout regularization stabilizes the val-loss and a rate of 15% shows the lowest val-loss. L2 regularization does not really improve the loss, it is almost negligible for very small regularization factors (e.g. 1e-4) or it increases the loss for larger factors (e.g. 1e-3).  
 
 #### Model training
 
-The network has been trained with a GPU P5000, using Adam optimizer and binary crossentropy loss function. The learning rate has been decreased exponentially, from an initial value of 1e-3, with a decay step of 35 and decay rate of 0.92.
+The network has been trained with a GPU P5000, using Adam optimizer (default values of beta_1 = 0.9, beta_2 = 0.999 and epsilon = 1e-7) and binary crossentropy loss. The learning rate has been decreased exponentially, from an initial value of 1e-3, with a decay step of 35 and decay rate of 0.92.
 
-After 10 epochs (batches of 128 images), the train loss is stable around 0.105 and the validation loss is around 0.199, which correspond to a ROC AUC of 0.992 and 0.918 respectively.  
+After 10 epochs (batches of 128 images), the train loss is stable around 0.105 and the validation loss is around 0.199, which correspond to a ROC AUC of 0.992 and 0.918 respectively.
 
 The training of the model is saved in notebook/ModelTraining.
 
@@ -74,7 +70,7 @@ The model has been tested on the dedicated test set, that showed a loss of 0.183
 
 #### Examples of correctly classified images
 
-Here are a few examples of corrected classification on test data for both positive and negative examples. The title of each image indicates the actual class and the probability that the image contains a crack. Note that the optimal threshold, evaluated on validation data, is equal to 0.08 (i.e. p<0.078 --> Non-cracked, p>0.08 --> Cracked)
+Here are a few examples of corrected classification on test data for both positive and negative examples. The title of each image indicates the actual class and the probability that the image contains a crack. Note that the optimal threshold, evaluated on validation data, is equal to 0.08 (i.e. p < 0.08 → Non-cracked, p >= 0.08 → Cracked)
 
 ##### True Positive
 ![True Positive Examples](README_images/TruePositive.png?raw=true)
@@ -84,7 +80,7 @@ Here are a few examples of corrected classification on test data for both positi
 
 #### Examples of misclassified images
 
-Here are a few misclassified images for both positive and negative examples.
+Here are a few misclassified images for both false positive and false negative examples.
 
 ##### False Positive
 ![False Positive Examples](README_images/FalsePositive.png?raw=true)
@@ -92,7 +88,7 @@ Here are a few misclassified images for both positive and negative examples.
 ##### False Negative
 ![False Negative Examples](README_images/FalseNegative.png?raw=true)
 
-False positive examples show common features like stripes and granules. False negative examples show common features like very small and shallow cracks and potholes that look like granules/stains.
+False positive examples show common features like stripes, granules and concrete discontinuity. False negative examples show common features like very small and shallow cracks and potholes that look like granules/stains.
 
 In general, many images were manually analyzed and in several cases it was very hard to classify them also for a person.  
 
