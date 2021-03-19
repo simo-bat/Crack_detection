@@ -88,7 +88,7 @@ Here are a few misclassified images for both false positive and false negative e
 ##### False Negative
 ![False Negative Examples](README_images/FalseNegative.png?raw=true)
 
-False positive examples show common features like stripes, granules and concrete discontinuity. False negative examples show common features like very small and shallow cracks and potholes that look like granules/stains.
+False positive examples show common features like stripes, granules, stains and concrete discontinuity. False negative examples show common features like very small and shallow cracks and out of focus or dark images.
 
 In general, many images were manually analyzed and in several cases it was very hard to classify them also for a person.  
 
