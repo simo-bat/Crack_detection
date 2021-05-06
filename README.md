@@ -110,7 +110,7 @@ test_images/ contains few images from the test subset that can be used to test t
 
 ## References
 
-[1] Structural Defects Network (SDNET) 2018, Concrete Cracks Image Dataset, https://www.kaggle.com/aniruddhsharma/structural-defects-network-concrete-crack-
+[1] Structural Defects Network (SDNET) 2018, Concrete Cracks Image Dataset, https://www.kaggle.com/aniruddhsharma/structural-defects-network-concrete-crack-images/version/1?select=Pavements
 
 [2] Very deep convolutional networks for large-scale image recognition, K. Simonyan and A. Zisserman, https://arxiv.org/pdf/1409.1556.pdf
 
